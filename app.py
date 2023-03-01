@@ -39,7 +39,7 @@ def details(name):
 
 
 # movie_names = pickle.load(open('movies.pkl', 'rb'))
-movies = pd.DataFrame(movie_names)
+# movies = pd.DataFrame(movie_names)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
