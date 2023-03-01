@@ -38,8 +38,8 @@ def details(name):
     return poster
 
 
-# movie_names = pickle.load(open('movies.pkl', 'rb'))
-# movies = pd.DataFrame(movie_names)
+movie_names = pickle.load(open('./movies.pkl', 'rb'))
+movies = pd.DataFrame(movie_names)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
