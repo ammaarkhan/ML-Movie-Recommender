@@ -29,6 +29,15 @@ def recommend(movie):
     return recommended_movies, movie_posters
 
 
+def details(name):
+    index = movies[movies['title'] == name].index[0]
+    movie_id = movies.iloc[index].movie_id
+
+    # getting the posters from tmdb API
+    poster = fetch_poster(movie_id)
+    return poster
+
+
 movie_names = pickle.load(open('movies.pkl', 'rb'))
 movies = pd.DataFrame(movie_names)
 
@@ -41,10 +50,14 @@ option = st.selectbox(
     movies['title'].values,
 )
 
-
 if option != "":
+    post = details(option)
+    col1, col2, col3 = st.columns(3)
 
-    # st.write(option)
+    with col2:
+        st.image(post, width=200)
+        st.write(option)
+
     names, posters = recommend(option)
 
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -52,7 +65,7 @@ if option != "":
 
     for i in range(10):
         if i > 4:
-            with col_list[i-5]:
+            with col_list[i - 5]:
                 st.image(posters[i])
                 st.write(names[i])
         else:
@@ -61,4 +74,3 @@ if option != "":
                 st.write(names[i])
                 if len(names[i]) < 20:
                     st.write(" ")
-
